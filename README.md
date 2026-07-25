@@ -2,6 +2,12 @@
 
 PagePulse is a small web tool that audits any public URL. You paste in a link, and it fetches that page and returns a report covering HTTP status, response time, page title, meta description, heading count, images missing alt text, and an approximate word count.
 
+## Live demo
+
+[https://pagepulse-rz2g.onrender.com](https://pagepulse-rz2g.onrender.com)
+
+Note: this is hosted on a free tier, so the first request after a period of inactivity may take 30-60 seconds while the server wakes up. Subsequent requests are fast.
+
 ## What it does
 
 Paste a URL into the input field and click Audit. The backend fetches that page, parses the returned HTML, and sends back a structured JSON report. The frontend renders that report as a clean list, and lets you download the raw JSON if you want it for your own use.
