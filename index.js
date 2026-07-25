@@ -1,6 +1,6 @@
 const express = require('express');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const cheerio = require('cheerio');
+const { parsePage } = require('./parser');
 
 const app = express();
 
@@ -32,19 +32,7 @@ app.post('/audit', async (req, res) => {
     }
 
     const html = await response.text();
-    const $ = cheerio.load(html);
-
-    $('script, style').remove();
-
-    const title = $('title').text();
-    const metaDescription = $('meta[name="description"]').attr('content') || '';
-    const h1Count = $('h1').length;
-    const imgMissingAlt = $('img').filter((i, el) => {
-      const alt = $(el).attr('alt');
-      return alt === undefined || alt.trim() === '';
-    }).length;
-    const bodyText = $('body').text().replace(/\s+/g, ' ').trim();
-    const wordCount = bodyText === '' ? 0 : bodyText.split(' ').length;
+    const { title, metaDescription, h1Count, imgMissingAlt, wordCount } = parsePage(html);
 
     res.json({
       status: response.status,
