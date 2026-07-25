@@ -1,0 +1,187 @@
+:root {
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+
+  /* Muted charcoal/slate theme with a restrained amber accent */
+  --color-bg: #1e222a;
+  --color-surface: #262b34;
+  --color-accent: #d9a441;
+  --color-accent-hover: #e6b855;
+  --color-text: #e8e6e1;
+  --color-text-muted: #9aa0aa;
+  --color-error: #d9736a;
+  --color-border: #363b45;
+
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg);
+}
+
+body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0 0 var(--space-md);
+  font-size: 2.5rem;
+}
+
+.input-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+#url-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+#url-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+#audit-button {
+  flex: 0 0 auto;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: var(--color-accent);
+  color: #1e222a;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+#audit-button:hover {
+  background: var(--color-accent-hover);
+}
+
+#audit-button:disabled {
+  background: var(--color-text-muted);
+  cursor: default;
+}
+
+#results {
+  margin-top: var(--space-md);
+}
+
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.report-label {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.report-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: right;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+}
+
+.state-message {
+  padding: var(--space-sm) 0;
+}
+
+.state-loading {
+  color: var(--color-text-muted);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.state-error {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.state-skeleton {
+  opacity: 0.4;
+}
+
+.state-skeleton .report-value {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.samples {
+  margin: var(--space-md) 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.samples-lead {
+  color: var(--color-text-muted);
+  margin-right: 0.5rem;
+}
+
+.samples-sep {
+  color: var(--color-border);
+  margin: 0 0.5rem;
+}
+
+.sample {
+  padding: 0 0 3px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-text);
+
+  /* Accent underline that grows in from the left on hover. */
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.25s ease;
+}
+
+.sample:hover,
+.sample:focus-visible {
+  outline: none;
+  background-size: 100% 2px;
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+}
